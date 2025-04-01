@@ -77,3 +77,5 @@ cython_debug/
 
 # ignore raw files
 /data/*
+/faiss_index/*
+
