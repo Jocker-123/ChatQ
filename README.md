@@ -4,7 +4,7 @@
 <table>
   <tr>
     <td width="40%">
-      <img src="images/logo.png" alt="App Preview" width="100%">
+      <img src="images/logo2.png" alt="App Preview" width="100%">
     </td>
     <td>
       <p><strong>RAG-powered search assistant</strong></p>
