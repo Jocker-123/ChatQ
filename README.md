@@ -1,4 +1,4 @@
-# 🧠 Local LLM-Powered RAG System with FastAPI
+# 🧠 Local LLM-Powered RAG System built with FastAPIs with OpenAI/Ollama models, supporting VectorDB, Elastic & Web Search
 ## 📦 Overview
 
 <table>
