@@ -199,7 +199,7 @@ curl http://localhost:11434/api/generate -d '{
 ```bash
 from langchain_community.llms import Ollama
 
-llm = Ollama(model="mistral", temperature=0.2, max_tokens=50)
+llm = Ollama(model="mistral", temperature=0.2)
 
 ```
 ## 🧪 Model Capability Comparison (For Local Use)
