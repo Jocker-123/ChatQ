@@ -1,232 +1,166 @@
-# 🧠 Local LLM-Powered RAG System built with FastAPIs with OpenAI/Ollama models, supporting VectorDB, Elastic & Web Search
-## 📦 Overview
+```markdown
+# ChatQ 🌐🤖
 
-<table>
-  <tr>
-    <td width="40%">
-      <img src="images/logo2.png" alt="App Preview" width="100%">
-    </td>
-    <td>
-      <p><strong>RAG-powered search assistant</strong></p>
-      <ul>
-        <li>Accepts user questions via API</li>
-        <li>Searches internal docs (Vector DB + Elastic)</li>
-        <li>Optionally pulls live web content</li>
-        <li>Feeds everything into a local LLM (e.g., Mistral)</li>
-        <li>Returns high-quality answers</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+![ChatQ Logo](https://img.shields.io/badge/ChatQ-FastAPI-orange?style=flat-square)
+![Release](https://img.shields.io/github/v/release/Jocker-123/ChatQ?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
-
-This project is a minimal Retrieval-Augmented Generation (RAG) app that:
-
-- Accepts user queries via FastAPI
-- Searches documents semantically (Vector DB) and by keyword (Elasticsearch)
-- Uses a local or remote LLM to generate responses from the retrieved context
-
-## 🤖 Architecture Design
-![architecture_design.png](images%2Farchitecture_design.png)
-<table>
-  <tr>
-    <td>
-      <p><strong>FastAPI-powered RAG architecture</strong> with hybrid local and live search capabilities.</p>
-      <ul>
-        <li>📄 Users upload docs → stored in Vector DB and Elasticsearch</li>
-        <li>🔍 User queries processed via API and routed to multiple search services</li>
-        <li>🧠 Results passed to a local/remote LLM (like Mistral or GPT-4o)</li>
-        <li>💬 Context-rich response returned to the user</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
----
-## UI:
-![UI.png](images%2FUI.png)
-
-### Upload Success
-![upload_success.png](images%2Fupload_success.png)
-
-### Query Response:
-![query_success.png](images%2Fquery_success.png)
----
-
-## 🔧 System Components Explained
-
-### 🧑‍💻 User Input
-- **Upload Docs**: Users can upload PDF/TXT files through a simple UI or API.
-  - 📥 Documents are parsed, embedded, and stored for retrieval.
-- **Query**: Users submit a question.
-  - 🧠 This query goes through vector search, keyword search, and optionally web search to gather relevant context.
+Welcome to **ChatQ**, a Local Retrieval-Augmented Generation (RAG) system. This project leverages FastAPI and integrates cutting-edge technologies like vector search, Elasticsearch, and optional web search. With ChatQ, you can harness the power of large language models (LLMs) such as Mistral or GPT-4 for intelligent question answering.
 
 ---
 
-### 🧠 Vector Search (FAISS or Pinecone)
-- Stores document **embeddings** as dense vectors.
-- Allows **semantic search** — returns results that are *meaningfully similar*, even if the words don't match.
-- Powered by models like `all-MiniLM-L6-v2`.
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ---
 
-### 🔍 ElasticSearch (Keyword Indexing)
-- Indexes raw document text for **exact keyword** and metadata-based lookup.
-- Very fast for filtering, name-based lookups, or date/tag filtering.
-- Complements vector search for **hybrid retrieval**.
+## Features
+
+- **Intelligent Question Answering**: Utilize LLMs to answer complex queries.
+- **Local RAG Implementation**: Combine local data retrieval with generative models for effective responses.
+- **FastAPI Framework**: Built on FastAPI for rapid deployment and high performance.
+- **Vector Search**: Implement vector-based search for precise information retrieval.
+- **Integration with Elasticsearch**: Leverage Elasticsearch for advanced search capabilities.
+- **Web Search Option**: Include an optional web search for real-time data access.
 
 ---
 
-### 🌐 Web Search Module
-- Executes **live online search** (e.g., DuckDuckGo or SerpAPI).
-- Pulls recent or missing information not found in local storage.
-- Extracts clean page content via tools like `trafilatura`.
+## Technologies Used
+
+ChatQ combines various technologies to achieve its goals:
+
+- **FastAPI**: A modern, fast (high-performance) web framework for building APIs with Python 3.7+.
+- **Elasticsearch**: A distributed, RESTful search and analytics engine designed for horizontal scalability.
+- **Vector Databases**: Store and retrieve vectors efficiently for semantic search.
+- **LLMs**: Utilize models like Mistral and GPT-4 for natural language understanding.
+- **Langchain**: A framework for building applications powered by LLMs.
 
 ---
 
-### 🧩 Prompt Update Engine
-- Gathers results from vector DB, Elastic, and web search.
-- Merges them into a single structured **context window** for the LLM.
-- Ensures relevance, diversity, and context completeness.
+## Getting Started
+
+To get started with ChatQ, you will need to clone the repository and install the necessary dependencies.
+
+### Prerequisites
+
+- Python 3.7 or higher
+- pip (Python package installer)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Jocker-123/ChatQ.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd ChatQ
+   ```
+
+3. Install the required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Start the FastAPI server:
+
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+Your ChatQ server should now be running at `http://localhost:8000`.
 
 ---
 
-### 🤖 LLM Service (Mistral, GPT-4o, etc.)
-- Processes the final prompt with embedded context.
-- Can be:
-  - **Local** using [Ollama](https://ollama.com) with models like `mistral`, `phi`, or `tinyllama`
-  - **Remote** via OpenAI's `gpt-4o` or `gpt-3.5-turbo`
-- Returns concise or multi-step answers based on query complexity.
+## Usage
 
----
+Once the server is up, you can start making requests to the API. 
 
-## 🔁 Full Query Flow
-1. User uploads docs (PDF/TXT) → stored in FAISS + Elastic.
-2. User asks a question → hits API.
-3. API runs:
-   - Vector similarity search
-   - Elastic keyword search
-   - Optional web search for recent info
-4. All results merged → sent as context to LLM.
-5. 🧠 LLM generates final output → returned to user.
+### Example Request
 
----
-
-## 🚀 System Overview
-
-| Component         | Role                                                  |
-|------------------|--------------------------------------------------------|
-| FastAPI           | Web server to handle uploads & queries                |
-| FAISS (Vector DB) | Stores document embeddings for semantic search        |
-| Elasticsearch     | Indexes raw documents for keyword search              |
-| LLM               | Generates answer from retrieved context               |
-| LangChain         | Orchestrates RAG pipeline                             |
-
----
-
-## 🔍 Why Use Both Vector DB and Elasticsearch?
-
-| Feature             | FAISS (Vector DB)                        | Elasticsearch                        |
-|--------------------|------------------------------------------|--------------------------------------|
-| Search Type         | Semantic (meaning-based)                 | Lexical (keyword-based)              |
-| Useful For          | Fuzzy queries, paraphrased questions     | Specific keywords, filters           |
-| Example Match       | "boil water" ≈ "heat liquid"             | Only matches "boil" and "water"      |
-| Index Size          | Small (dense vectors)                    | Larger (inverted index)              |
-| Typical Use in RAG  | Find most relevant context chunks        | Boost recall or targeted retrieval   |
-
-✅ **Hybrid RAG** uses both for best results.
-
----
-
-## 🏃 Running Lightweight LLMs Locally (CPU-friendly)
-
-**System Assumptions:**
-
-- 32 GB RAM (use ~16 GB safely)
-- 8 GB VRAM (unused for now)
-- Goal: CPU-only text generation with ~50 token responses
-
-You can use quantized models like `Mistral`, `Phi`, or `TinyLlama`.
-
-### ✅ Recommended Setup: `ollama`
-
-**Install once:**
+You can use tools like **Postman** or **cURL** to interact with the API. Here’s a simple example using cURL:
 
 ```bash
-# Mac/Linux
-curl -fsSL https://ollama.com/install.sh | sh
-
-# Start the server
-ollama run mistral
+curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d '{"question": "What is Retrieval-Augmented Generation?"}'
 ```
 
-# windows
-Download Ollama for Windows from their official site: 👉 https://ollama.com/download
+### Example Response
 
-Run the installer and launch the Ollama terminal.
+The API will return a JSON response with the answer to your question:
 
-Pull and run a model (e.g. mistral):
-```
-ollama run mistral
-```
-or 
-```bash
-"C:\Users\{user_name}\AppData\Local\Programs\Ollama\ollama.exe" run mistral
+```json
+{
+  "answer": "Retrieval-Augmented Generation (RAG) is a framework that combines retrieval and generation techniques to answer questions more effectively."
+}
 ```
 
-### Other Models
-```bash
-ollama run mistral         # 7B, solid quality
-ollama run phi             # 2.7B, fast reasoning
-ollama run tinyllama       # 1.1B, ultra lightweight
+---
+
+## Contributing
+
+We welcome contributions to ChatQ! If you want to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Submit a pull request.
+
+Please ensure your code adheres to the existing style and includes tests where applicable.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+
+For any inquiries or suggestions, feel free to reach out:
+
+- **GitHub**: [Jocker-123](https://github.com/Jocker-123)
+- **Email**: your-email@example.com
+
+---
+
+## Releases
+
+For the latest updates and releases, please check the [Releases section](https://github.com/Jocker-123/ChatQ/releases).
+
+![ChatQ Release Button](https://img.shields.io/badge/Latest%20Release-Download%20Now-blue?style=flat-square)
+
+---
+
+## Acknowledgements
+
+We would like to thank the developers of FastAPI, Elasticsearch, and the contributors of the libraries used in this project.
+
+---
+
+## Additional Resources
+
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
+- [Langchain Documentation](https://langchain.readthedocs.io/)
+
+---
+
+Feel free to explore the code and contribute to the development of ChatQ. Your feedback and suggestions are invaluable as we continue to improve this project.
+
+---
+
+![ChatQ Banner](https://www.example.com/chatq-banner.png)
+
 ```
-### Docker LLama
-docker run -d -p 11434:11434 --name ollama ollama/ollama
-
-
-### Calling these models 
-```
-curl http://localhost:11434/api/generate -d '{
-  "model": "mistral",
-  "prompt": "What's the capital of France?",
-  "stream": false
-}'
-```
-
-
-## ⚙️ Add to LangChain (Python)
-
-```bash
-from langchain_community.llms import Ollama
-
-llm = Ollama(model="mistral", temperature=0.2)
-
-```
-## 🧪 Model Capability Comparison (For Local Use)
-
-| Model        | Size    | RAM (Quantized) | Context Limit | Good At                        |
-|--------------|---------|------------------|----------------|-------------------------------|
-| **TinyLlama**    | 1.1B    | ~2 GB             | ~2K tokens     | Super fast, basic answers     |
-| **Phi-2**        | 2.7B    | ~4 GB             | ~2K tokens     | Reasoning, logic, code        |
-| **Mistral**      | 7B      | ~8 GB             | 4K–8K tokens   | Strong general-purpose        |
-| **LLaMA 2 (7B)** | 7B      | ~10 GB            | 4K tokens      | Open-source GPT-alternative   |
-| **Gemma**        | 2B      | ~5 GB             | 2K–4K tokens   | Efficient + clean output      |
-
-⚙️ For short responses (~50 tokens), any of these models should run well on CPU in your 32GB system.
-
-
-
-
-🧠 Example Query: "What’s the population of Germany?"
-If you feed this into context:
-
-- “According to 2022 stats, Germany had a population of 83.2 million people.”
-
-Then ask:
-- User Query: “What’s the capital of Germany?"
-
-Add More context with Elasticsearch, VectorDB match to the query and fed to the LLM model.
-
-LLM Output:
-
--  "The capital of Germany is Berlin. Germany, located entirely in Europe, is one of the continent's most powerful economies and has a high standard of living for its population. Its history dates back to 1871 when it was established, with significant periods of industrialization, imperial expansion, and international influence. However, the early 20th century saw Germany involved in both World Wars and the atrocities committed under the Nazi regime. After WWII, Germany lost territories and resources due to the fallout from the wars, and it was divided into East Germany (German Democratic Republic) and West Germany (Federal Republic of Germany). The country was officially reunified on October 3, 1990.\n\n   In 2023, Germany has an estimated population of 84 million people, with Berlin being the largest city. Due to a low birth rate and high death rate, Germany has been experiencing a natural population decline for five decades, making migration crucial for its population growth. In 2022, it was estimated that almost 15 percent of the population is foreign.\n\n   Economically, Germany had a nominal GDP of 3.9 trillion euros (4.1 trillion U.S. dollars) in 2022, making it the fourth largest economy in the world. It is a net exporter of goods and specializes in technologically advanced goods such as automobiles, machinery, electronics, and pharmaceuticals. The European Union trading bloc is its largest trading partner."
